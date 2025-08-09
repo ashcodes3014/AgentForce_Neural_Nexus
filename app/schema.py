@@ -8,5 +8,5 @@ class ResumeAnalysisRequest(BaseModel):
 class AnalysisResult(BaseModel):
     similarity_score: float
     keyword_match_score: float
-    suggestions: list[str]
+    suggestion: list[str]
     cover_letter: str

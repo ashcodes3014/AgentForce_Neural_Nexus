@@ -10,6 +10,3 @@ def get_linkedin_data(user_id: str) :
         data = doc.to_dict()
         return data
     return None
-
-
-# print(get_linkedin_data("test_user"))
