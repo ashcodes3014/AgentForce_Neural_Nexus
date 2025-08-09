@@ -1,24 +1,20 @@
 from PyPDF2 import PdfReader
-from langchain.text_splitter import CharacterTextSplitter
-from langchain.docstore.document import Document
 from typing import Tuple
 
-def extract_text_from_pdf(pdf_path: str) -> str:
-    reader = PdfReader(pdf_path)
-    text = ""
-    for page in reader.pages:
-        text += page.extract_text() or ""
-    return text
+
+def extract_text_from_pdf(file_path: str) -> str:
+    """Extract text from PDF file"""
+    try:
+        with open(file_path, 'rb') as file:
+            reader = PdfReader(file)
+            text = ""
+            for page in reader.pages:
+                text += page.extract_text() or ""
+            return text
+    except Exception as e:
+        raise ValueError(f"Failed to process PDF: {str(e)}")
 
 def process_resume_text(text: str) -> Tuple[str, list[str]]:
-    text_splitter = CharacterTextSplitter(
-        separator="\n",
-        chunk_size=1000,
-        chunk_overlap=200,
-        length_function=len
-    )
-    chunks = text_splitter.split_text(text)
-    
-    docs = [Document(page_content=chunk) for chunk in chunks]
-    
+    """Process extracted text into chunks"""
+    chunks = [text[i:i+1000] for i in range(0, len(text), 800)]
     return text, chunks
