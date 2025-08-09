@@ -1,5 +1,5 @@
 from langchain_core.prompts import PromptTemplate
-from langchain_openai import ChatOpenAI
+from langchain_cohere import ChatCohere
 from langchain_core.output_parsers import CommaSeparatedListOutputParser
 import os
 from dotenv import load_dotenv
@@ -8,10 +8,10 @@ load_dotenv()
 
 class LLMService:
     def __init__(self):
-        self.llm = ChatOpenAI(
+        self.llm = ChatCohere(
             temperature=0.7,
-            openai_api_key=os.getenv("OPENAI_API_KEY"),
-            model_name="gpt-4o-mini"
+            openai_api_key=os.getenv("COHERE_API_KEY"),
+            model_name="command"
         )
     
     def extract_keywords(self, text: str) -> list[str]:
