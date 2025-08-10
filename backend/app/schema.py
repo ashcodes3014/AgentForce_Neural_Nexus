@@ -1,4 +1,5 @@
-from pydantic import BaseModel
+from pydantic import BaseModel,EmailStr
+from typing import Optional ,List
 
 class ResumeAnalysisRequest(BaseModel):
     job_title: str
@@ -6,7 +7,33 @@ class ResumeAnalysisRequest(BaseModel):
 
 
 class AnalysisResult(BaseModel):
-    similarity_score: float
     keyword_match_score: float
-    suggestion: list[str]
-    cover_letter: str
+    suggestion: dict
+
+
+class Recipient(BaseModel):
+    user_id: str
+    recipient_name: str
+    recipient_title: str
+    recipient_company: str
+    recipient_location: str
+    recipient_email: EmailStr
+
+
+class OutputSchema(BaseModel):
+    full_name: str
+    job_title: str
+    email: EmailStr
+    phone: str
+    location: str
+    linkedin: str
+    twitter: Optional[str] = ""
+    recipient_name: str
+    recipient_title: str
+    recipient_company: str
+    recipient_location: str
+    recipient_email: EmailStr
+    body: str
+    college: Optional[str] = ""
+    skills: List[str] = []
+    projects: List[str] = []
