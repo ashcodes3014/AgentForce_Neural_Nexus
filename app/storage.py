@@ -1,6 +1,4 @@
 from app.firebaseConfig import fs
-from typing import Optional
-
 
 def get_linkedin_data(user_id: str) :
     doc_ref = fs.collection("users").document(user_id)
