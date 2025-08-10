@@ -8,6 +8,8 @@ import { Mail, Lock, User, Link as LinkIcon, Eye, EyeOff } from 'lucide-react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+
+
 const signupSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
   email: z.string().email('Invalid email address'),
@@ -39,7 +41,6 @@ export default function SignupForm() {
         data.email,
         data.password
       );
-      
       await setDoc(doc(db, 'users', userCredential.user.uid), {
         name: data.name,
         email: data.email,

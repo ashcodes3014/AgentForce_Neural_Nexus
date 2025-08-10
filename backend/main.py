@@ -32,6 +32,7 @@ filters = Filtering()
 @app.post("/analyze")
 async def analyze_resume(file: UploadFile = File(...),job_title: str = Form(...),user_id: str = Form("")) -> AnalysisResult :
     try:
+        print("Working")
         with NamedTemporaryFile(delete=False, suffix=".pdf") as temp_pdf:
             temp_pdf.write(await file.read())
             temp_pdf_path = temp_pdf.name

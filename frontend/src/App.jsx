@@ -3,10 +3,13 @@ import { AuthProvider } from './component/authContext';
 import AuthForm from './component/auth';
 import Home from './component/home';
 import PrivateRoute from './component/privateRoute';
+import {Provider }  from 'react-redux'
+import store from './component/store'
 
 function App() {
   return (
-    <Router>
+    <Provider store={store}>    
+      <Router>
       <AuthProvider>
         <Routes>
           <Route path="/login" element={<AuthForm />} />
@@ -22,6 +25,7 @@ function App() {
         </Routes>
       </AuthProvider>
     </Router>
+    </Provider>
   );
 }
 
