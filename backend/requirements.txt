@@ -20,8 +20,10 @@ pydantic-settings==2.0.3
 firebase-admin==6.2.0
 
 # ML + utilities
-numpy==1.26.4
-scikit-learn==1.4.2
+pip>=25.1.1
+setuptools>=68.0.0
+wheel>=0.41.2
+
 
 
 # Multipart form-data
